@@ -55,6 +55,7 @@ const exportTree = (config: Configuration, nodeUI: NodeUI): NodeSpec => {
     y: v.y,
     layout: undefined,
     folding: undefined,
+    style: undefined
   };
   // 1.2345... => 1.2
   const root = nodeUI.isRoot();
@@ -72,13 +73,16 @@ const exportTree = (config: Configuration, nodeUI: NodeUI): NodeSpec => {
   if (v.folding) {
     view.folding = true;
   }
+  if (v.style) {
+    view.style = v.style
+  }
   const subs: NodeSpec[] = [];
   nodeUI.subs.forEach((childUI) => {
     subs.push(exportTree(config, childUI));
   });
   return {
     model: nodeUI.model,
-    view,
+    view: view,
     subs: subs.length > 0 ? subs : undefined,
   };
 };

@@ -6,7 +6,7 @@ const template = {
   editor: `<div class="mwd-node-editor link-editor">
     <div><input type="text" data-url></div>
     <div><input type="text" data-body></div>
-    <div><button data-submit>UPDAE</button></div>
+    <div><button data-submit>UPDATE</button></div>
 </div>`,
 };
 
