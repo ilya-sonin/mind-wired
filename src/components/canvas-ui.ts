@@ -1,17 +1,17 @@
-import { DndContext, DndHelper } from '../service/dnd'
-import { viewportDndHandler } from './dnd/viewport-dnd'
-import nodeDndHandler from './dnd/node-dnd'
-import changeParentDndHandler from './dnd/change-parent-node'
-import { EVENT } from '../service/event-bus'
-import iconSetPara from '../assets/icon-chng-parent.svg'
 import iconfolding from '@/assets/icon-folded.svg'
+import iconSetPara from '../assets/icon-chng-parent.svg'
+import { DndContext, DndHelper } from '../service/dnd'
+import type { DomUtil } from '../service/dom'
+import { EVENT } from '../service/event-bus'
 import { geom, type Point } from '../service/geom'
 import type { Configuration } from './config'
-import { NodeUI } from './node/node-ui'
+import changeParentDndHandler from './dnd/change-parent-node'
+import nodeDndHandler from './dnd/node-dnd'
+import { viewportDndHandler } from './dnd/viewport-dnd'
 import { MindWired } from './mind-wired'
-import type { NodeRect, SchemaSpec } from './node/node-type'
 import { INodeEditor } from './node'
-import type { DomUtil } from '../service/dom'
+import type { NodeRect, SchemaSpec } from './node/node-type'
+import { NodeUI } from './node/node-ui'
 
 // const pixelRatio = window.devicePixelRatio;
 const template = {
@@ -117,8 +117,10 @@ const registerElement = (canvasUI: CanvasUI, nodeUI: NodeUI) => {
 	if (nodeUI.isRoot()) {
 		placeHolder.append($el)
 	} else {
-		const $subs = canvasUI.dom.findOne(nodeUI.parent.$el, '.mwd-subs')
-		$subs.append($el)
+		try {
+			const $subs = canvasUI.dom.findOne(nodeUI.parent.$el, '.mwd-subs')
+			$subs.append($el)
+		} catch (e) {}
 	}
 	// apply uuid for node instance
 	$el.dataset.uid = nodeUI.uid

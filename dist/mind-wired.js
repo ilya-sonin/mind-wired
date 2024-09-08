@@ -151,8 +151,8 @@ class We {
     });
   }
 }
-const J = () => {
-}, Be = J, Fe = J, Q = (n) => {
+const Be = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24'%20viewBox='0%20-960%20960%20960'%20width='24'%3e%3cpath%20d='M480-134.616%20313.078-301.539l43.383-43.383L480-221.384l123.539-123.538%2043.383%2043.383L480-134.616Zm-123.539-478L313.078-656%20480-822.922%20646.922-656l-43.383%2043.384L480-736.155%20356.461-612.616Z'/%3e%3c/svg%3e", Fe = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%200%2024%2024'%20width='24px'%20fill='%23000000'%3e%3cpath%20d='M0%200h24v24H0V0z'%20fill='none'/%3e%3cpath%20d='M12%202C6.48%202%202%206.48%202%2012s4.48%2010%2010%2010%2010-4.48%2010-10S17.52%202%2012%202zm0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208zm3-13.5V9h-4v2h4v2.5l3.5-3.5zm-6%204L5.5%2014%209%2017.5V15h4v-2H9z'/%3e%3c/svg%3e", J = () => {
+}, Ie = J, He = J, Q = (n) => {
   let e = n.touches[0];
   n.type === "touchend" && (e = n.changedTouches[0]), n.clientX = e.clientX, n.clientY = e.clientY, n.layerX = 0, n.layerY = 0, n.offsetX = 0, n.offsetY = 0, n.pageX = e.pageX, n.pageY = e.pageY, n.screenX = e.screenX, n.screenY = e.screenY;
 }, me = (n) => {
@@ -181,38 +181,38 @@ const J = () => {
   } finally {
     n.data.clear(), n.dragging = void 0;
   }
-}, Ie = (n, e) => {
+}, qe = (n, e) => {
   n.touchTimer = window.setTimeout(() => {
     Q(e), ye(n, e);
   }, 10);
-}, He = (n, e) => {
+}, Ve = (n, e) => {
   me(n), Q(e), ve(n, e);
-}, qe = (n, e) => {
+}, Xe = (n, e) => {
   me(n), Q(e), we(n, e);
-}, Ve = (n) => {
+}, Ke = (n) => {
   const { handler: e } = n;
-  e.beforeDrag = e.beforeDrag || J, e.dragging = e.dragging || Be, e.afterDrag = e.afterDrag || Fe, window.addEventListener("mousedown", (t) => ye(n, t), !1), window.addEventListener(
+  e.beforeDrag = e.beforeDrag || J, e.dragging = e.dragging || Ie, e.afterDrag = e.afterDrag || He, window.addEventListener("mousedown", (t) => ye(n, t), !1), window.addEventListener(
     "mousemove",
     (t) => ve(n, t),
     {
       passive: !1
     }
-  ), window.addEventListener("mouseup", (t) => we(n, t), !1), window.addEventListener("touchstart", (t) => Ie(n, t), !1), window.addEventListener("touchmove", (t) => He(n, t), {
+  ), window.addEventListener("mouseup", (t) => we(n, t), !1), window.addEventListener("touchstart", (t) => qe(n, t), !1), window.addEventListener("touchmove", (t) => Ve(n, t), {
     passive: !1
   }), window.addEventListener(
     "toucend",
-    (t) => qe(n, t),
+    (t) => Xe(n, t),
     !1
   );
 };
-class Xe {
+class Ye {
   constructor(e) {
     c(this, "touchTimer");
     c(this, "dragging");
     c(this, "handler");
     c(this, "data");
     c(this, "originalEvent");
-    this.touchTimer = void 0, this.handler = e, this.data = /* @__PURE__ */ new Map(), Ve(this);
+    this.touchTimer = void 0, this.handler = e, this.data = /* @__PURE__ */ new Map(), Ke(this);
   }
   capture(e, t) {
     this.data.set(e, t);
@@ -221,7 +221,7 @@ class Xe {
     return this.data.get(e);
   }
 }
-const Ke = 180 / Math.PI, C = class C {
+const Ge = 180 / Math.PI, C = class C {
   constructor(e = 0, t = 0) {
     c(this, "x");
     c(this, "y");
@@ -236,7 +236,7 @@ const Ke = 180 / Math.PI, C = class C {
 };
 c(C, "ZERO", new C(0, 0));
 let m = C;
-class Ye {
+class je {
   constructor(e, t = m.ZERO) {
     /**
      * [-180, +180] degrees from positive X axis
@@ -244,7 +244,7 @@ class Ye {
     c(this, "_degree");
     this.target = e, this.base = t;
     const s = this.target.x - t.x, i = this.target.y - t.y;
-    this._degree = Math.atan2(i === 0 ? 0 : -i, s) * Ke;
+    this._degree = Math.atan2(i === 0 ? 0 : -i, s) * Ge;
   }
   /**
    * counter clock wise from X-AXIS(east), which is quadrant(1 > 2 > 3 > 4)
@@ -284,7 +284,7 @@ class Ye {
     throw new Error(`unexpected ccwx: ${e}`);
   }
 }
-class Ge {
+class Ze {
   constructor() {
     /**
      * move dst to dst'
@@ -311,36 +311,30 @@ class Ge {
     });
   }
   heading(e, t) {
-    return new Ye(e, t);
+    return new je(e, t);
   }
 }
-const K = new Ge(), je = (n) => ({
-  beforeDrag: (e) => {
-    n.dndContext.capture("offset", n.config.getOffset());
+const K = new Ze(), Je = (n) => ({
+  beforeDrag: () => {
   },
   dragging: (e) => {
-    const { dx: t, dy: s } = e;
-    if (t === 0 && s === 0)
-      return;
-    n.dndContext.capture("dragged", !0);
-    const i = n.dndContext.getData("offset");
-    n.config.emit(g.DRAG.VIEWPORT, {
-      state: "drag",
-      offset: new m(i.x + t, i.y + s)
+    const { dx: t, dy: s } = e, i = n.dndContext.getData("iconEl");
+    n.dom.css(i, {
+      transform: `translate(calc(-50% + ${t}px), ${s}px)`
     });
   },
-  afterDrag: (e) => {
-    const { dx: t, dy: s } = e;
-    if (t !== 0 || s !== 0) {
-      const o = n.dndContext.getData("offset");
-      n.config.emit(g.DRAG.VIEWPORT, {
-        state: "done",
-        offset: new m(o.x + t, o.y + s)
-      });
+  afterDrag: () => {
+    const { dom: e } = n, t = n.dndContext.getData("iconEl"), s = e.domRect(t), i = s.x + s.width / 2, o = s.y + s.height / 2;
+    e.css(t, {
+      transform: "translate(-50%, 0)"
+    });
+    const r = n.findNodeAt(i, o);
+    if (r) {
+      const a = n.config.mindWired().getSelectedNodes();
+      a.filter((l) => r.isDescendantOf(l)).length > 0 || n.config.mindWired().moveNodes(r, a, !0);
     }
-    n.dndContext.getData("dragged") || n.config.emit(g.VIEWPORT.CLICKED);
   }
-}), Ze = (n) => ({
+}), Qe = (n) => ({
   beforeDrag: (e) => {
     const { target: t } = e.originalEvent, i = n.dom.closest(t, ".mwd-node").dataset.uid;
     n.dndContext.capture("nodeId", i);
@@ -377,30 +371,36 @@ const K = new Ge(), je = (n) => ({
       y: s / o
     });
   }
-}), Je = (n) => ({
-  beforeDrag: () => {
+}), Ue = (n) => ({
+  beforeDrag: (e) => {
+    n.dndContext.capture("offset", n.config.getOffset());
   },
   dragging: (e) => {
-    const { dx: t, dy: s } = e, i = n.dndContext.getData("iconEl");
-    n.dom.css(i, {
-      transform: `translate(calc(-50% + ${t}px), ${s}px)`
+    const { dx: t, dy: s } = e;
+    if (t === 0 && s === 0)
+      return;
+    n.dndContext.capture("dragged", !0);
+    const i = n.dndContext.getData("offset");
+    n.config.emit(g.DRAG.VIEWPORT, {
+      state: "drag",
+      offset: new m(i.x + t, i.y + s)
     });
   },
-  afterDrag: () => {
-    const { dom: e } = n, t = n.dndContext.getData("iconEl"), s = e.domRect(t), i = s.x + s.width / 2, o = s.y + s.height / 2;
-    e.css(t, {
-      transform: "translate(-50%, 0)"
-    });
-    const r = n.findNodeAt(i, o);
-    if (r) {
-      const a = n.config.mindWired().getSelectedNodes();
-      a.filter((l) => r.isDescendantOf(l)).length > 0 || n.config.mindWired().moveNodes(r, a, !0);
+  afterDrag: (e) => {
+    const { dx: t, dy: s } = e;
+    if (t !== 0 || s !== 0) {
+      const o = n.dndContext.getData("offset");
+      n.config.emit(g.DRAG.VIEWPORT, {
+        state: "done",
+        offset: new m(o.x + t, o.y + s)
+      });
     }
+    n.dndContext.getData("dragged") || n.config.emit(g.VIEWPORT.CLICKED);
   }
-}), Qe = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%200%2024%2024'%20width='24px'%20fill='%23000000'%3e%3cpath%20d='M0%200h24v24H0V0z'%20fill='none'/%3e%3cpath%20d='M12%202C6.48%202%202%206.48%202%2012s4.48%2010%2010%2010%2010-4.48%2010-10S17.52%202%2012%202zm0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208zm3-13.5V9h-4v2h4v2.5l3.5-3.5zm-6%204L5.5%2014%209%2017.5V15h4v-2H9z'/%3e%3c/svg%3e", Ue = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24'%20viewBox='0%20-960%20960%20960'%20width='24'%3e%3cpath%20d='M480-134.616%20313.078-301.539l43.383-43.383L480-221.384l123.539-123.538%2043.383%2043.383L480-134.616Zm-123.539-478L313.078-656%20480-822.922%20646.922-656l-43.383%2043.384L480-736.155%20356.461-612.616Z'/%3e%3c/svg%3e", U = {
+}), U = {
   viewport: `<div data-mind-wired-viewport>
     <canvas></canvas>
-    <div class="mwd-selection-area"><div class="ctrl-icon" data-cmd="set-para" style="display:none;"><img src="${Qe}"></div></div>
+    <div class="mwd-selection-area"><div class="ctrl-icon" data-cmd="set-para" style="display:none;"><img src="${Fe}"></div></div>
     <div class="mwd-nodes"></div>
   </div>`,
   node: `<div class="mwd-node">
@@ -408,7 +408,7 @@ const K = new Ge(), je = (n) => ({
     <div class="mwd-subs"></div>
     <div class="mwd-node-ctrl"></div>
   </div>`,
-  foldingControl: `<div class="ctrl-icon" data-cmd="unfolding"><img src="${Ue}"></div>`
+  foldingControl: `<div class="ctrl-icon" data-cmd="unfolding"><img src="${Be}"></div>`
 }, et = (n) => {
   var d;
   const { el: e, ui: t, dom: s } = n.config, i = t.width || 600, o = t.height || 600;
@@ -438,7 +438,14 @@ const K = new Ge(), je = (n) => ({
   const t = e.$el = n.dom.parseTemplate(U.node), s = n.config.mindWired(), i = s.getNodeRender(e.model), o = s.translateModel(e.model), r = n.getNodeBody(e);
   i.install(e.model, r), o.schema && (re(o.schema, t, n.config), re(o.schema, r, n.config));
   const d = n.elemOf(".mwd-nodes");
-  return e.isRoot() ? d.append(t) : n.dom.findOne(e.parent.$el, ".mwd-subs").append(t), t.dataset.uid = e.uid, e.$el;
+  if (e.isRoot())
+    d.append(t);
+  else
+    try {
+      n.dom.findOne(e.parent.$el, ".mwd-subs").append(t);
+    } catch {
+    }
+  return t.dataset.uid = e.uid, e.$el;
 }, Y = (n, e, t = !1) => {
   if (!e.$el)
     throw new Error(`[MINDWIRED][ERROR] not registered node. (${e.uid})`);
@@ -448,7 +455,7 @@ const K = new Ge(), je = (n) => ({
   }
 }, tt = (n) => {
   const { dom: e } = n;
-  return new Xe({
+  return new Ye({
     accept: (t) => {
       const s = n.config.mindWired();
       if (e.closest(t, "[data-editor-element]"))
@@ -460,10 +467,10 @@ const K = new Ge(), je = (n) => ({
         if (e.closest(t, "[data-cmd]"))
           return !1;
         if (e.is(t, "canvas"))
-          return n.dndContext.capture("handler", je(n)), !0;
+          return n.dndContext.capture("handler", Ue(n)), !0;
         if (e.is(t, ".mwd-node")) {
           const o = e.closest(t, ".mwd-node").dataset.uid;
-          return n.dndContext.capture("handler", Ze(n)), n.dndContext.capture("nodeId", o), n.dndContext.capture("editing", s.isEditing()), !0;
+          return n.dndContext.capture("handler", Qe(n)), n.dndContext.capture("nodeId", o), n.dndContext.capture("editing", s.isEditing()), !0;
         } else
           return !1;
       }
@@ -3494,8 +3501,8 @@ export {
   gt as EdgeContext,
   pt as EdgeStyle,
   ms as ExportContext,
-  Ge as Geometry,
-  Ye as Heading,
+  Ze as Geometry,
+  je as Heading,
   $t as IconBadgeEditor,
   Jt as IconBadgeRenderer,
   ot as LineEdgeRenderer,
